@@ -68,16 +68,16 @@ You’ll see Google’s OAuth consent screen. After authorizing, check the brows
 ## Next Steps (Roadmap)
 
 - [ ] **Fetch YouTube subscriptions**  
-      Use the Nango SDK + `connectionId` to call the YouTube Data API’s `subscriptions.list` endpoint.
+       Use the Nango SDK + `connectionId` to call the YouTube Data API’s `subscriptions.list` endpoint.
 
 - [ ] **Store connections**  
-      Save each user’s `connectionId` in a database (SQLite or MySQL). This way, the backend remembers which Google account is connected.
+       Save each user’s `connectionId` in a database (SQLite or MySQL). This way, the backend remembers which Google account is connected.
 
 - [ ] **Filter feeds by subscriptions**  
-      Display a combined YouTube feed, then allow filtering by selected subscriptions in the frontend UI.
+       Display a combined YouTube feed, then allow filtering by selected subscriptions in the frontend UI.
 
 - [ ] **Better UX for auth state**  
-      Show when a user is already connected, and handle reconnections if a token expires.
+       Show when a user is already connected, and handle reconnections if a token expires.
 
 - [ ] **Deploy to the cloud**  
-      Host backend + frontend (e.g., Railway, Vercel, or Render) and connect with Nango Cloud.
+       Host backend + frontend (e.g., Railway, Vercel, or Render) and connect with Nango Cloud.

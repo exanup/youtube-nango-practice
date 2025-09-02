@@ -32,11 +32,12 @@ app.post('/nango/session', async (_req, res) => {
 app.get('/youtube/subscriptions', async (req, res) => {
     try {
         const connectionId = req.query.connectionId as string
+        const pageToken = req.query.pageToken as string | undefined
+
         if (!connectionId) {
             return res.status(400).json({ error: 'connectionId is required' })
         }
 
-        // Use Nango to make the API call to YouTube
         const response = await nango.get({
             connectionId,
             providerConfigKey: 'youtube-subscriptions-test',
@@ -45,6 +46,7 @@ app.get('/youtube/subscriptions', async (req, res) => {
                 part: 'snippet',
                 mine: 'true',
                 maxResults: 10,
+                ...(pageToken && { pageToken }),
             },
         })
 
