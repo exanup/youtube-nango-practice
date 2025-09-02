@@ -29,6 +29,32 @@ app.post('/nango/session', async (_req, res) => {
     }
 })
 
+app.get('/youtube/subscriptions', async (req, res) => {
+    try {
+        const connectionId = req.query.connectionId as string
+        if (!connectionId) {
+            return res.status(400).json({ error: 'connectionId is required' })
+        }
+
+        // Use Nango to make the API call to YouTube
+        const response = await nango.get({
+            connectionId,
+            providerConfigKey: 'youtube-subscriptions-test',
+            endpoint: 'https://www.googleapis.com/youtube/v3/subscriptions',
+            params: {
+                part: 'snippet',
+                mine: 'true',
+                maxResults: 10,
+            },
+        })
+
+        res.json(response.data)
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'failed_to_fetch_subscriptions' })
+    }
+})
+
 const PORT = Number(process.env.PORT || 4000)
 app.listen(PORT, () => {
     console.log(`API running at http://localhost:${PORT}`)
