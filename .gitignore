@@ -1,0 +1,13 @@
+# Node
+node_modules
+*.log
+
+# Build
+dist
+build
+.vite
+
+# Env
+.env
+web/.env
+server/.env
