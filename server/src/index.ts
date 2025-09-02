@@ -20,7 +20,7 @@ app.post('/nango/session', async (_req, res) => {
     try {
         const r = await nango.createConnectSession({
             end_user: { id: 'dev-user-1' },
-            allowed_integrations: ['youtube'],
+            allowed_integrations: ['youtube-subscriptions-test'],
         })
         res.status(200).json({ sessionToken: r.data.token })
     } catch (err) {
