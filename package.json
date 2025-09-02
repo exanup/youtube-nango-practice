@@ -1,19 +1,30 @@
 {
-  "name": "youtube-nango-practice",
-  "private": true,
-  "type": "module",
-  "version": "1.0.0",
-  "workspaces": [
-    "web",
-    "server"
-  ],
-  "scripts": {
-    "dev": "concurrently -n web,server -c auto \"npm:dev --workspace web\" \"npm:dev --workspace server\"",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
-  },
-  "devDependencies": {
-    "concurrently": "^9.0.0",
-    "prettier": "^3.3.0",
-    "prettier-plugin-tailwindcss": "^0.6.8"
-  }
+    "name": "youtube-nango-practice",
+    "private": true,
+    "type": "module",
+    "version": "1.0.0",
+    "workspaces": [
+        "web",
+        "server"
+    ],
+    "scripts": {
+        "prepare": "husky",
+        "dev": "concurrently -n web,server -c auto \"npm:dev --workspace web\" \"npm:dev --workspace server\"",
+        "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx,json,css,md}": "prettier --write"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "devDependencies": {
+        "concurrently": "^9.0.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.6",
+        "prettier": "^3.3.0",
+        "prettier-plugin-tailwindcss": "^0.6.8"
+    }
 }
