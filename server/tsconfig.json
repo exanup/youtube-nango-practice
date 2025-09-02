@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
         "target": "ES2020",
-        "module": "ESNext",
-        "moduleResolution": "Bundler",
-        "lib": ["ES2020"],
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "rootDir": "src",
         "esModuleInterop": true,
         "strict": true,
         "skipLibCheck": true

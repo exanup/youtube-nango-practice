@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 
-type Subscription = {
-    id: string
-    title: string
-    thumbnailUrl: string
-}
+import type {
+    ChannelSubscription,
+    YouTubeSubscriptionApi,
+} from '../types/youtube'
+import { mapApiToSubscription } from '../types/youtube'
 
 export default function Subscriptions({
     connectionId,
 }: {
     connectionId: string
 }) {
-    const [subs, setSubs] = useState<Subscription[]>([])
+    const [subs, setSubs] = useState<ChannelSubscription[]>([])
     const [loading, setLoading] = useState(true)
     const [nextPageToken, setNextPageToken] = useState<string | null>(null)
     const [prevPageToken, setPrevPageToken] = useState<string | null>(null)
@@ -29,12 +29,10 @@ export default function Subscriptions({
                     }`,
                 )
                 const data = await res.json()
-                const mapped: Subscription[] =
-                    data.items?.map((item: any) => ({
-                        id: item.id,
-                        title: item.snippet.title,
-                        thumbnailUrl: item.snippet.thumbnails?.default?.url,
-                    })) ?? []
+                const mapped: ChannelSubscription[] =
+                    data.items?.map((item: YouTubeSubscriptionApi) =>
+                        mapApiToSubscription(item),
+                    ) ?? []
                 setSubs(mapped)
                 setNextPageToken(data.nextPageToken ?? null)
                 setPrevPageToken(data.prevPageToken ?? null)
@@ -54,9 +52,12 @@ export default function Subscriptions({
         <div className="mt-4">
             <ul className="space-y-2">
                 {subs.map((sub) => (
-                    <li key={sub.id} className="flex items-center space-x-3">
+                    <li
+                        key={sub.subscriptionId}
+                        className="flex items-center space-x-3"
+                    >
                         <img
-                            src={sub.thumbnailUrl}
+                            src={sub.thumbnailUrl ?? ''}
                             alt={sub.title}
                             className="h-8 w-8 rounded-full"
                         />
