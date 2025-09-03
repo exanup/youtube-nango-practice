@@ -17,7 +17,9 @@
         "fix": "npm run lint:fix && npm run format",
         "db:gen": "npm --workspace server run db:gen",
         "db:migrate": "npm --workspace server run db:migrate",
-        "db:studio": "npm --workspace server run db:studio"
+        "db:studio": "npm --workspace server run db:studio",
+        "simulate:webhook": "node server/scripts/simulate-webhook.js",
+        "verify:webhook": "node server/scripts/verify-webhook.js"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [

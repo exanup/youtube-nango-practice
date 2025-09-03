@@ -9,7 +9,13 @@ import connectionsRoutes from './routes/connections'
 
 const app = express()
 app.use(cors())
-app.use(express.json())
+app.use(
+    express.json({
+        verify: (req, _res, buf) => {
+            ;(req as any).rawBody = buf
+        },
+    }),
+)
 
 app.get('/health', (_req, res) => {
     res.json({ ok: true })
