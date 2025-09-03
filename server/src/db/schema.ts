@@ -21,11 +21,8 @@ export const connections = sqliteTable(
             .notNull()
             .default(sql`(strftime('%s','now') * 1000)`),
     },
-    (t) => ({
-        unq_user_provider: uniqueIndex('unq_user_provider').on(
-            t.userId,
-            t.provider,
-        ),
-        unq_connection_id: uniqueIndex('unq_connection_id').on(t.connectionId),
-    }),
+    (t) => [
+        uniqueIndex('unq_user_provider').on(t.userId, t.provider),
+        uniqueIndex('unq_connection_id').on(t.connectionId),
+    ],
 )
