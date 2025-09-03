@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `unq_connection_id` ON `connections` (`connection_id`);

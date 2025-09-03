@@ -14,7 +14,10 @@
         "lint:fix": "eslint server/src web/src --fix --cache",
         "lint:check": "npm run lint && prettier --check .",
         "format": "prettier --write .",
-        "fix": "npm run lint:fix && npm run format"
+        "fix": "npm run lint:fix && npm run format",
+        "db:gen": "npm --workspace server run db:gen",
+        "db:migrate": "npm --workspace server run db:migrate",
+        "db:studio": "npm --workspace server run db:studio"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [

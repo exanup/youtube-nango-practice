@@ -4,6 +4,8 @@ import cors from 'cors'
 
 import nangoRoutes from './routes/nango'
 import youtubeRoutes from './routes/youtube'
+import dbRoutes from './routes/db'
+import connectionsRoutes from './routes/connections'
 
 const app = express()
 app.use(cors())
@@ -15,6 +17,8 @@ app.get('/health', (_req, res) => {
 
 app.use(nangoRoutes)
 app.use(youtubeRoutes)
+app.use(dbRoutes)
+app.use(connectionsRoutes)
 
 const PORT = Number(process.env.PORT || 4000)
 app.listen(PORT, () => {

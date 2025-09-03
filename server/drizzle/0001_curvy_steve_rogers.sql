@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `unq_user_provider` ON `connections` (`user_id`,`provider`);
