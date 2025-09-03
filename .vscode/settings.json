@@ -1,3 +1,8 @@
 {
-    "biome.enabled": false
+    "biome.enabled": false,
+    "eslint.workingDirectories": [
+        { "directory": "./", "changeProcessCWD": true },
+        { "directory": "./server", "changeProcessCWD": true },
+        { "directory": "./web", "changeProcessCWD": true }
+    ]
 }
