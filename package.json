@@ -10,10 +10,19 @@
     "scripts": {
         "prepare": "husky",
         "dev": "concurrently -n web,server -c auto \"npm:dev --workspace web\" \"npm:dev --workspace server\"",
-        "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+        "lint": "eslint server/src web/src --cache",
+        "lint:fix": "eslint server/src web/src --fix --cache",
+        "lint:check": "npm run lint && prettier --check .",
+        "format": "prettier --write .",
+        "fix": "npm run lint:fix && npm run format"
     },
     "lint-staged": {
-        "*.{ts,tsx,js,jsx,json,css,md}": "prettier --write"
+        "*.{ts,tsx,js,jsx}": [
+            "eslint --fix --cache"
+        ],
+        "*.{ts,tsx,js,jsx,json,css,md,yml,yaml}": [
+            "prettier --write"
+        ]
     },
     "husky": {
         "hooks": {
@@ -21,10 +30,19 @@
         }
     },
     "devDependencies": {
+        "@eslint/js": "^9.34.0",
+        "@typescript-eslint/eslint-plugin": "^8.42.0",
+        "@typescript-eslint/parser": "^8.42.0",
         "concurrently": "^9.0.0",
+        "eslint": "^9.34.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "globals": "^16.3.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.6",
         "prettier": "^3.3.0",
-        "prettier-plugin-tailwindcss": "^0.6.8"
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "typescript-eslint": "^8.42.0"
     }
 }
