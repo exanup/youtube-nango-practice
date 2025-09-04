@@ -10,11 +10,16 @@
     "scripts": {
         "prepare": "husky",
         "dev": "concurrently -n web,server -c auto \"npm:dev --workspace web\" \"npm:dev --workspace server\"",
-        "lint": "eslint server/src web/src --cache",
-        "lint:fix": "eslint server/src web/src --fix --cache",
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx --cache",
+        "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix --cache",
         "lint:check": "npm run lint && prettier --check .",
         "format": "prettier --write .",
-        "fix": "npm run lint:fix && npm run format"
+        "fix": "npm run lint:fix && npm run format",
+        "db:gen": "npm --workspace server run db:gen",
+        "db:migrate": "npm --workspace server run db:migrate",
+        "db:studio": "npm --workspace server run db:studio",
+        "simulate:webhook": "node server/scripts/simulate-webhook.js",
+        "verify:webhook": "node server/scripts/verify-webhook.js"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [

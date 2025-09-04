@@ -1,0 +1,17 @@
+{
+    "type": "auth",
+    "operation": "update",
+    "success": true,
+    "connectionId": "conn_1234567890abcdef",
+    "providerConfigKey": "youtube",
+    "endUser": {
+        "endUserId": "dev-user-1"
+    },
+    "environment": "dev",
+    "accountId": "acc_987654321",
+    "integrationId": "intg_abcdef123456",
+    "metadata": {
+        "provider": "youtube",
+        "scopes": ["youtube.readonly", "youtube.upload"]
+    }
+}

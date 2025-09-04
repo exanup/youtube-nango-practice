@@ -1,0 +1,1 @@
+ALTER TABLE `connections` ADD `scope` text;
